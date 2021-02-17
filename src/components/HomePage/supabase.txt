@@ -1,0 +1,38 @@
+// import supabase from "../../supabase";
+
+const [itemsList, setItemList] = useState([]);
+
+const fetchItems = async () => {
+   const { data: items, error } = await supabase.from("items").select("*");
+   if (error) console.log("error", error);
+   else setItemList(items);
+ };
+
+
+useEffect(() => {
+    fetchItems().catch(alert);
+  });
+
+  const addItem = async () => {
+    const { data: item, error } = await supabase
+      .from("items")
+      .insert({
+        content,
+        is_priority: isPriority,
+        created_by: user.displayName,
+      })
+      .single();
+    if (error) alert(error);
+    else {
+      setItemList([item, ...itemsList]);
+      setContent("");
+      closeModal();
+    }
+  };
+  
+  <ItemTile
+    item={item}
+    // itemsList={itemsList}
+    // setItemsList={setItemList}
+    key={item.id}
+  />

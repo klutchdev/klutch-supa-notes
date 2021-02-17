@@ -1,59 +1,42 @@
-import React, {
-  useImperativeHandle,
-  useState,
-  forwardRef,
-  useCallback,
-  useEffect,
-} from "react";
-import { createPortal } from "react-dom";
+import React from "react";
 
-const modalElement = document.getElementById("modal-root");
-
-const Modal = ({ children, fade = false, defaultOpened = false }, ref) => {
-  const [isOpen, setIsOpen] = useState(defaultOpened);
-
-  const close = useCallback(() => setIsOpen(false), []);
-
-  useImperativeHandle(
-    ref,
-    () => ({
-      open: () => setIsOpen(true),
-      close,
-    }),
-    [close]
-  );
-
-  const handleEscape = useCallback(
-    (event) => {
-      if (event.keyCode === 27) close();
-    },
-    [close]
-  );
-
-  useEffect(() => {
-    if (isOpen) document.addEventListener("keydown", handleEscape, false);
-    return () => {
-      document.removeEventListener("keydown", handleEscape, false);
-    };
-  }, [handleEscape, isOpen]);
-
-  return createPortal(
-    isOpen ? (
-      <div className={`modal ${fade ? "modal-fade" : ""}`}>
-        <div className="modal-overlay" onClick={close} />
-        <span
-          role="button"
-          className="modal-close"
-          aria-label="close"
-          onClick={close}
-        >
-          ❌
-        </span>
-        <div className="modal-body">{children}</div>
+const Modal = ({
+  header,
+  children,
+  onSubmit,
+  onClose,
+  firstButtonElement,
+  secondButtonElement,
+  isForm,
+}) => {
+  return (
+    <div className="overlay">
+      <div onClick={onClose} className="modal-close">
+        ✕
       </div>
-    ) : null,
-    modalElement
+      <div className="dialog">
+        <div className="header">
+          <h2 className="h2 light">{header}</h2>
+        </div>
+        {isForm ? (
+          <form onSubmit={onSubmit}>
+            {children}
+            <div className="footer">
+              {firstButtonElement}
+              {secondButtonElement}
+            </div>
+          </form>
+        ) : (
+          <>
+            {children}
+            <div className="footer">
+              {firstButtonElement}
+              {secondButtonElement}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
-
-export default forwardRef(Modal);
+export default Modal;
