@@ -1,12 +1,12 @@
 {
-  "name": "klutch-supa-notes",
+  "name": "klutch-supa-tasks",
   "version": "2.0.0",
   "repository": {
-    "url": "https://github.com/klutchdev/klutch-supa-notes",
+    "url": "https://github.com/klutchdev/klutch-supa-tasks",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/klutchdev/klutch-supa-notes",
+    "url": "https://github.com/klutchdev/klutch-supa-tasks",
     "email": "klutchdevelopment@gmail.com"
   },
   "author": "Kyle Leary <Klutchdevelopment@gmail.com",
