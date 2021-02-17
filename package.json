@@ -1,7 +1,16 @@
 {
-  "name": "klutch-supabase-todo",
+  "name": "klutch-supa-notes",
   "version": "2.0.0",
-  "private": true,
+  "repository": {
+    "url": "https://github.com/klutchdev/klutch-supa-notes",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/klutchdev/klutch-supa-notes",
+    "email": "klutchdevelopment@gmail.com"
+  },
+  "author": "Kyle Leary <Klutchdevelopment@gmail.com",
+  "private": false,
   "dependencies": {
     "@supabase/supabase-js": "^1.3.4",
     "@testing-library/jest-dom": "^5.11.9",
